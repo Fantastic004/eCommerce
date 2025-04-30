@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./store/cartSlice";
 import { AppDispatch, RootState } from "./store/Store";
 import Navbar from "./Navbar";
+// import Footer from "./Footer";
 
 // Skeleton Loader Component
 const SkeletonLoader = () => (
