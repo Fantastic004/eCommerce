@@ -30,7 +30,6 @@ const Category: React.FC<CategoryProps> = ({
     "mens-shoes",
     "mens-watches",
     "mobile-accessories",
-    "vehicle",
     "womens-jewellery",
     "womens-shoes",
   ];
@@ -79,7 +78,7 @@ const Category: React.FC<CategoryProps> = ({
         className="w-full accent-blue-500"
       />
       <button
-        className="w-full mt-4 border font-bold border-red-500 text-black py-2 rounded-lg hover:bg-red-500"
+        className="w-full mt-4 border font-bold border-blue-500 text-black py-2 rounded-lg hover:bg-blue-500"
         onClick={() => {
           setSelectedCategory("all");
           setPrice(999.99);

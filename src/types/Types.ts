@@ -68,6 +68,13 @@ export type Product = {
   | "womens-jewellery"
   | "womens-shoes"
   | "womens-watches";
+  export type CartItem = {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+    images: string[]
+  }
 
 
   
