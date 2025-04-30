@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CategoryType, Product } from "../types/Types";
+import { CartItem, CategoryType, Product } from "../types/Types";
 import { motion } from "framer-motion";
 import Category from "./Category";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "./store/cartSlice";
+import { AppDispatch, RootState } from "./store/Store";
 import Navbar from "./Navbar";
 
 // Skeleton Loader Component
@@ -27,7 +30,7 @@ const Products = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://dummyjson.com/products?limit=190"
+        "https://dummyjson.com/products?limit=194"
       );
       setProducts(response.data.products);
       setSkeletonCount(response.data.products.length);
@@ -59,11 +62,20 @@ const Products = () => {
 
     setFilteredData(filtered);
   }, [products, selectedCategory, price, searchQuery]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const addItemToCart = (item: CartItem) => {
+    console.log("Adding to cart:", item); // 👈 log the item
+    dispatch(addToCart(item));
+  };
+  const cartItem = useSelector<RootState>((state) => state);
+  console.log(cartItem);
 
   return (
     <>
       <Navbar />
       <div className="flex justify-between p-5">
+      {error}
         <div>
           <Category
             selectedCategory={selectedCategory}
@@ -74,48 +86,62 @@ const Products = () => {
             setSearchQuery={setSearchQuery}
           />
         </div>
+      {error == "" ? (
+          <div className=" grid grid-cols-[repeat(auto-fit,_minmax(220px,_1fr))] gap-5  w-[80%]">
+            {isLoading ? (
+              Array(skeletonCount)
+                .fill(0)
+                .map((_, index) => <SkeletonLoader key={index} />)
+            ) : filteredData.length > 0 ? (
+              filteredData.map((item) => (
+                <motion.div
+                  key={item.id}
+                  className="bg-white px-5 py-6 rounded-md shadow-xl text-center transition-transform duration-300 ease-in-out hover:scale-105 w-full max-w-[220px] h-[320px] flex flex-col justify-between"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div>
+                    <img
+                      className="w-[150px] h-[150px] mx-auto mb-1 object-contain"
+                      src={item.images[0]}
+                      alt={item.title}
+                    />
+                    <h3 className="text-sm font-semibold mb-2 h-[48px] overflow-hidden">
+                      {item.title}
+                    </h3>
+                  </div>
 
-        <div className=" grid grid-cols-[repeat(auto-fit,_minmax(220px,_1fr))] gap-5  w-[80%]">
-          {isLoading ? (
-            Array(skeletonCount)
-              .fill(0)
-              .map((_, index) => <SkeletonLoader key={index} />)
-          ) : filteredData.length > 0 ? (
-            filteredData.map((item) => (
-              <motion.div
-                key={item.id}
-                className="bg-white px-5 py-6 rounded-md shadow-xl text-center transition-transform duration-300 ease-in-out hover:scale-105 w-full max-w-[220px] h-[320px] flex flex-col justify-between"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div>
-                  <img
-                    className="w-[150px] h-[150px] mx-auto mb-1 object-contain"
-                    src={item.images[0]}
-                    alt={item.title}
-                  />
-                  <h3 className="text-sm font-semibold mb-2 h-[48px] overflow-hidden">
-                    {item.title}
-                  </h3>
-                </div>
-
-                <div>
-                  <p className="text-lg text-blue-700 font-bold mb-3">
-                    ₹{Math.round(item.price * 85)}
-                  </p>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 w-full">
-                    Add to Cart
-                  </button>
-                </div>
-              </motion.div>
-            ))
-          ) : (
-            <p className="text-gray-500 col-span-full text-center">
-              No products found matching your filters.
-            </p>
-          )}
-        </div>
+                  <div>
+                    <p className="text-lg text-blue-700 font-bold mb-3">
+                      ₹{Math.round(item.price * 85)}
+                    </p>
+                    <button
+                    onClick={() =>
+                      addItemToCart({
+                        id: item.id,
+                        name: item.title,
+                        price: item.price,
+                        quantity: 1,
+                        images: [item.images[0]], // optional extra field if needed
+                      })
+                    }
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 w-sm"
+                  >
+                      Add to Cart
+                    </button>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <p className="text-gray-500 col-span-full text-center">
+                No products found matching your filters.
+              </p>
+            )}
+          </div>
+      ) : (
+        <></>
+      )}
       </div>
     </>
   );
