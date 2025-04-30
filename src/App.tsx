@@ -4,14 +4,14 @@ import {
   faFacebook,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-
+import Login from "./components/Login";
 
 library.add(faGoogle, faFacebook, faInstagram);
 
 function App() {
   return (
     <>
-     
+      <Login />
     </>
   );
 }
