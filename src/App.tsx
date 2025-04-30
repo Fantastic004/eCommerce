@@ -4,14 +4,15 @@ import {
   faFacebook,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import Products from "./components/Products";
 
 
 library.add(faGoogle, faFacebook, faInstagram);
 
 function App() {
   return (
-    <>
-     
+    <>   
+    <Products/>  
     </>
   );
 }
