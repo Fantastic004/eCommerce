@@ -1,48 +1,48 @@
 export type Product = {
-    id: number;
-    title: string;
-    description: string;
-    category: string;
-    price: number;
-    discountPercentage: number;
+  id: number | string;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  tags: string[];
+  brand: string;
+  sku: string;
+  weight: number;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  reviews: {
     rating: number;
-    stock: number;
-    tags: string[];
-    brand: string;
-    sku: string;
-    weight: number;
-    dimensions: {
-      width: number;
-      height: number;
-      depth: number;
-    };
-    warrantyInformation: string;
-    shippingInformation: string;
-    availabilityStatus: string;
-    reviews: {
-      rating: number;
-      comment: string;
-      date: string; // ISO format
-      reviewerName: string;
-      reviewerEmail: string;
-    }[];
-    returnPolicy: string;
-    minimumOrderQuantity: number;
-    meta: {
-      createdAt: string; // ISO format
-      updatedAt: string; // ISO format
-      barcode: string;
-      qrCode: string;
-    };
-    images: string[];
-    thumbnail: string;
+    comment: string;
+    date: string; // ISO format
+    reviewerName: string;
+    reviewerEmail: string;
+  }[];
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+  meta: {
+    createdAt: string; // ISO format
+    updatedAt: string; // ISO format
+    barcode: string;
+    qrCode: string;
   };
-  
-  export type ProductList = {
-    products: Product[];
-  };
-  // types/Types.ts
-  export type CategoryType =
+  images: string[];
+  thumbnail: string;
+};
+
+export type ProductList = {
+  products: Product[];
+};
+// types/Types.ts
+export type CategoryType =
   | "all"
   | "beauty"
   | "fragrances"
@@ -68,13 +68,12 @@ export type Product = {
   | "womens-jewellery"
   | "womens-shoes"
   | "womens-watches";
-  export type CartItem = {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    images: string[]
-  }
-
-
-  
+export type CartItem = {
+  id: string | number;
+  name: string;
+  price: number;
+  quantity: number;
+  images: string[];
+  discountPercentage: number;
+  warrantyInformation: string;
+};
