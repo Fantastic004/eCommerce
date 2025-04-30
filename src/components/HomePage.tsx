@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
       <div>
         <Navbar />
       </div>
-      <div className="text-center align-middle  bg-[url('./assets/homepagebg.jpeg')] bg-cover  h-[89vh] w-full">
+      <div className="text-center mt-[70px] align-middle  bg-[url('./assets/homepagebg.jpeg')] bg-cover  h-[89vh] w-full">
         <h1>
           <span className="text-6xl font-bold mt-4">
             Discover everything you need{" "}

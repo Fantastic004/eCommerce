@@ -74,8 +74,8 @@ const Products = () => {
   return (
     <>
       <Navbar />
-      <div className="flex justify-between p-5">
-      {error}
+      <div className="flex justify-between mt-[70px] p-5">
+        {error}
         <div>
           <Category
             selectedCategory={selectedCategory}
@@ -86,7 +86,7 @@ const Products = () => {
             setSearchQuery={setSearchQuery}
           />
         </div>
-      {error == "" ? (
+        {error == "" ? (
           <div className=" grid grid-cols-[repeat(auto-fit,_minmax(220px,_1fr))] gap-5  w-[80%]">
             {isLoading ? (
               Array(skeletonCount)
@@ -117,17 +117,19 @@ const Products = () => {
                       ₹{Math.round(item.price * 85)}
                     </p>
                     <button
-                    onClick={() =>
-                      addItemToCart({
-                        id: item.id,
-                        name: item.title,
-                        price: item.price,
-                        quantity: 1,
-                        images: [item.images[0]], // optional extra field if needed
-                      })
-                    }
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 w-sm"
-                  >
+                      onClick={() =>
+                        addItemToCart({
+                          id: item.id,
+                          name: item.title,
+                          price: item.price,
+                          quantity: 1,
+                          images: [item.images[0]],
+                          discountPercentage: item.discountPercentage,
+                          warrantyInformation: item.warrantyInformation,
+                        })
+                      }
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 w-sm"
+                    >
                       Add to Cart
                     </button>
                   </div>
@@ -139,9 +141,9 @@ const Products = () => {
               </p>
             )}
           </div>
-      ) : (
-        <></>
-      )}
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
