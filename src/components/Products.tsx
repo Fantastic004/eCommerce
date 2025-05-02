@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./store/cartSlice";
 import { AppDispatch, RootState } from "./store/Store";
 import Navbar from "./Navbar";
-// import Footer from "./Footer";
+import "react-toastify/dist/ReactToastify.css";
 
 // Skeleton Loader Component
 const SkeletonLoader = () => (
@@ -66,7 +66,6 @@ const Products = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const addItemToCart = (item: CartItem) => {
-    console.log("Adding to cart:", item); // 👈 log the item
     dispatch(addToCart(item));
   };
   const cartItem = useSelector<RootState>((state) => state);

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const HomePage: React.FC = () => {
           Shop now
         </button>
       </div>
+      <Footer />
     </div>
   );
 };

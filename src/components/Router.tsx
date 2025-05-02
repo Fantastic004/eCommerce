@@ -4,6 +4,9 @@ import Login from "./Login";
 import HomePage from "./HomePage";
 import Products from "./Products";
 import { CartItems } from "./CartItems";
+import About from "./About";
+import ContactUs from "./ContactUs";
+import OrderConfirmationModal from "./Ordersucessful";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,18 @@ const router = createBrowserRouter([
   {
     path: "/cartItems",
     element: <CartItems />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <ContactUs />,
+  },
+  {
+    path: "/checkout",
+    element: <OrderConfirmationModal />,
   },
 ]);
 
