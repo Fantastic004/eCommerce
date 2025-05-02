@@ -8,7 +8,7 @@ type CategoryProps = {
   setPrice: (price: number) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  selectedCategory: CategoryType; 
+  selectedCategory: CategoryType;
 };
 
 const Category: React.FC<CategoryProps> = ({
@@ -25,13 +25,12 @@ const Category: React.FC<CategoryProps> = ({
     "fragrances",
     "furniture",
     "groceries",
-    "laptops",
+
     "mens-shirts",
     "mens-shoes",
     "mens-watches",
     "mobile-accessories",
     "womens-jewellery",
-    "womens-shoes",
   ];
 
   return (
@@ -57,7 +56,7 @@ const Category: React.FC<CategoryProps> = ({
                 ? "text-blue-500 font-semibold underline underline-offset-2 decoration-[px]"
                 : "hover:text-blue-700"
             }`}
-            onClick={() => setSelectedCategory(category as CategoryType)} 
+            onClick={() => setSelectedCategory(category as CategoryType)}
           >
             {category
               .replace(/-/g, " ")

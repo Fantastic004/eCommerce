@@ -8,6 +8,7 @@ import About from "./About";
 import ContactUs from "./ContactUs";
 import OrderConfirmationModal from "./Ordersucessful";
 import NotFound from "./NotFound";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -20,27 +21,51 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <HomePage />,
+    element: (
+      <ProtectedRoute>
+        <HomePage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/products",
-    element: <Products />,
+    element: (
+      <ProtectedRoute>
+        <Products />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/cartItems",
-    element: <CartItems />,
+    element: (
+      <ProtectedRoute>
+        <CartItems />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/about",
-    element: <About />,
+    element: (
+      <ProtectedRoute>
+        <About />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/contact",
-    element: <ContactUs />,
+    element: (
+      <ProtectedRoute>
+        <ContactUs />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/checkout",
-    element: <OrderConfirmationModal />,
+    element: (
+      <ProtectedRoute>
+        <OrderConfirmationModal />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "*",

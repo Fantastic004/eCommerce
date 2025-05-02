@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { login } from "./store/AuthSlice";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -13,6 +17,8 @@ const Login: React.FC = () => {
     e.preventDefault();
     if (username === "admin" && password === "admin") {
       setError("");
+
+      dispatch(login({ username })); // ✅ set login state
       navigate("/home");
     } else {
       setError("Incorrect username or password");

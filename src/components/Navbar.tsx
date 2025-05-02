@@ -2,8 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/Store";
+import { logout } from "./store/AuthSlice";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ const Navbar: React.FC = () => {
   const cartItem = useSelector((state: RootState) => state.cart);
 
   const cartItemlen = cartItem.length;
+
+  const dispatch = useDispatch();
 
   function handleCartClick() {
     navigate("/cartItems");
@@ -30,6 +33,10 @@ const Navbar: React.FC = () => {
 
   function handleContactClick() {
     navigate("/contact");
+  }
+
+  function handleSignoutClick() {
+    dispatch(logout());
   }
 
   return (
@@ -68,18 +75,19 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
         </div>
-        <div className="mr-10 cursor-pointer hover:text-blue-600">
-          <ul className="flex">
-            {/* <li>Login</li> */}
-
-            <li onClick={handleCartClick} className="cursor-pointer">
-              <FontAwesomeIcon icon={faCartShopping} />
+        <div className="flex mr-10 items-center gap-4">
+          <ul className="flex items-center">
+            <li onClick={handleCartClick} className="cursor-pointer relative">
+              <FontAwesomeIcon
+                className="hover:text-blue-600"
+                icon={faCartShopping}
+              />
               {cartItemlen > 0 && (
                 <span
                   style={{
                     position: "absolute",
-                    top: "8px",
-                    right: "40px",
+                    top: "-12px",
+                    right: "-15px",
                     borderRadius: "50%",
                     padding: "0px 10px",
                     fontSize: "10px",
@@ -91,6 +99,10 @@ const Navbar: React.FC = () => {
               )}
             </li>
           </ul>
+
+          <button onClick={handleSignoutClick} className="hover:text-blue-600">
+            Sign out
+          </button>
         </div>
       </div>
     </div>
