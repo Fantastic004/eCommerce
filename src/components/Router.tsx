@@ -9,6 +9,7 @@ import ContactUs from "./ContactUs";
 import OrderConfirmationModal from "./Ordersucessful";
 import NotFound from "./NotFound";
 import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    ),
   },
   {
     path: "/home",
