@@ -47,12 +47,14 @@ const cartSlice = createSlice({
       const item = state.find((item) => item.id == action.payload);
       if (item) {
         item.quantity += 1;
+        localStorage.setItem("cart", JSON.stringify([...state]));
       }
     },
     decreaseQuantity(state, action: PayloadAction<string>) {
       const item = state.find((item) => item.id == action.payload);
       if (item && item.quantity > 1) {
         item.quantity -= 1;
+        localStorage.setItem("cart", JSON.stringify([...state]));
       }
     },
   },
