@@ -1,19 +1,25 @@
 // components/OrderConfirmationModal.tsx
 import React from "react";
 import { CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router";
+import { buyItem } from "./store/cartSlice";
+import { useDispatch } from "react-redux";
 
-type Props = {
-  orderId: string;
-  onClose: () => void;
-};
+const OrderConfirmationModal: React.FC = () => {
+  const orderId = Date.now().toString();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  function handleProdNavi() {
+    dispatch(buyItem());
+    navigate("/products");
+  }
 
-const OrderConfirmationModal: React.FC<Props> = ({ orderId, onClose }) => {
   return (
     <div className="fixed inset-0 bg-gray-700 bg-opacity-70 flex items-center justify-center z-50">
       <div className="bg-gray-900 text-white p-6 rounded-xl shadow-xl w-full max-w-md relative">
         <button
           className="absolute top-3 right-3 text-white hover:text-gray-300"
-          onClick={onClose}
+          // No onClick handler since props are removed
         >
           ✕
         </button>
@@ -32,8 +38,8 @@ const OrderConfirmationModal: React.FC<Props> = ({ orderId, onClose }) => {
               Track your order
             </button>
             <button
+              onClick={handleProdNavi}
               className="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded text-white font-medium"
-              onClick={onClose}
             >
               Return to shopping
             </button>

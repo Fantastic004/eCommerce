@@ -24,6 +24,14 @@ const Navbar: React.FC = () => {
     navigate("/products");
   }
 
+  function handleAboutClick() {
+    navigate("/about");
+  }
+
+  function handleContactClick() {
+    navigate("/contact");
+  }
+
   return (
     <div className="bg-blue-400 fixed w-full  top-0 z-10">
       <div className="flex justify-between text-lg text-black font-semibold  p-5 shadow-2xl">
@@ -46,8 +54,18 @@ const Navbar: React.FC = () => {
             >
               Products
             </li>
-            <li className="cursor-pointer hover:text-blue-600">About</li>
-            <li className="cursor-pointer hover:text-blue-600">Contact</li>
+            <li
+              onClick={handleAboutClick}
+              className="cursor-pointer hover:text-blue-600"
+            >
+              About
+            </li>
+            <li
+              onClick={handleContactClick}
+              className="cursor-pointer hover:text-blue-600"
+            >
+              Contact
+            </li>
           </ul>
         </div>
         <div className="mr-10 cursor-pointer hover:text-blue-600">
