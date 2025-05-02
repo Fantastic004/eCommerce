@@ -7,6 +7,7 @@ import { CartItems } from "./CartItems";
 import About from "./About";
 import ContactUs from "./ContactUs";
 import OrderConfirmationModal from "./Ordersucessful";
+import NotFound from "./NotFound";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <OrderConfirmationModal />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
